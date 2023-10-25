@@ -16,7 +16,6 @@ int main() {
 	int four = mainNumber % 10;
 
 	mainNumber /= 10;
-	// показываем остаток от деления 567 на 10 на экран
 	int three = mainNumber % 10;
 	mainNumber /= 10;
 	int two = mainNumber % 10;
