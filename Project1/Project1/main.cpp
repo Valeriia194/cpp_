@@ -4,19 +4,36 @@
 
 using namespace std;
 
+class Rectangle {
+
+	private:
+		int height;
+		int width;
+
+	public:
+		void getHeight(int h) {
+			int height = h;
+		}
+		void getWidth(int w) {
+			int width = w;
+		}
+		void sqr() {
+			cout << "The square is: " << height * width;
+		}
+		int p(int h, int w) {
+			cout << "The perimetre is: ";
+				return ((h + w) * 2);
+		}
+	};
+
+
 int main() 
 {
-
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
-
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
-
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
-
+	Rectangle r;
+	r.getHeight(3);
+	r.getWidth(2);
+	r.sqr();
+	
 
 	return 0;
 }
