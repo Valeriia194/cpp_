@@ -4,18 +4,50 @@
 
 using namespace std;
 
+class Number {
+public:
+	virtual void num() {
+	}
+
+	virtual void show() {
+	}
+};
+
+class Integer : public Number {
+private:
+	int newNum;
+public:
+	void num(int num) {
+		newNum = num + num;
+	}
+	void show() {
+		cout << "Integer"<< newNum << endl;
+	}
+};
+
+class Real : public Number {
+private:
+	int newNum;
+public:
+	void num(int num) {
+		newNum = num + num;
+	}
+	void show() {
+		cout << "Real num"<<newNum << endl;
+	}
+};
+
 int main() 
 {
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
+	Integer inter;
+	Real realN;
 
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
+	inter.num(2);
+	inter.show();
 
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
+	realN.num(3);
+	realN.show();
 
 
 	return 0;
