@@ -21,7 +21,7 @@ public:
 		newNum = num + num;
 	}
 	void show() {
-		cout << "Integer"<< newNum << endl;
+		cout << "Integer "<< newNum << endl;
 	}
 };
 
@@ -33,7 +33,7 @@ public:
 		newNum = num + num;
 	}
 	void show() {
-		cout << "Real num"<<newNum << endl;
+		cout << "Real num "<<newNum << endl;
 	}
 };
 
