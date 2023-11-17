@@ -4,19 +4,32 @@
 
 using namespace std;
 
+class Musician {
+private:
+	string name;
+	string instrument;
+
+public:
+	Musician(string _name, string _instrument){
+		this->name = _name;
+		this->instrument = _instrument;
+	}
+};
+
+class Band {
+public:
+	Musician* first = new Musician("Name", "Instrument");
+	Musician* second = new Musician("Name2", "Instrument2");
+
+	void play() {
+		cout << first << endl << second << endl;
+	}
+};
+
 int main() 
 {
-
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
-
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
-
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
-
+	Band band;
+	band.play();
 
 	return 0;
 }
