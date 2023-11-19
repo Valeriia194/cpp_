@@ -4,22 +4,22 @@
 
 using namespace std;
 
-class Musician {
+class Wheel {
 private:
-	string name;
-	string instrument;
+	int diametre;
+	string material;
 
 public:
-	Musician(string _name, string _instrument){
-		this->name = _name;
-		this->instrument = _instrument;
+	Wheel(int _diametre, string _material){
+		this->diametre = _diametre;
+		this->material = _material;
 	}
 };
 
-class Band {
+class Car {
 public:
-	Musician* first = new Musician("Name", "Instrument");
-	Musician* second = new Musician("Name2", "Instrument2");
+	Wheel* first = new Wheel(3, "Instrument");
+	Wheel* second = new Wheel(12, "Instrument2");
 
 	void play() {
 		cout << first << endl << second << endl;
@@ -28,8 +28,8 @@ public:
 
 int main() 
 {
-	Band band;
-	band.play();
+	Car car;
+	car.play();
 
 	return 0;
 }
