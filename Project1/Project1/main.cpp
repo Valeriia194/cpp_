@@ -1,35 +1,47 @@
 #include <iostream>
+#include <vector>
 #include <string>
-#include <cmath>
-
-using namespace std;
 
 class Wheel {
-private:
-	int diametre;
-	string material;
-
 public:
-	Wheel(int _diametre, string _material){
-		this->diametre = _diametre;
-		this->material = _material;
-	}
+    Wheel(double diameter, std::string tireType) : diameter(diameter), tireType(tireType) {}
+
+    double getDiameter() { return diameter; }
+    std::string getTireType() { return tireType; }
+
+private:
+    double diameter;
+    std::string tireType;
 };
 
 class Car {
 public:
-	Wheel* first = new Wheel(3, "Instrument");
-	Wheel* second = new Wheel(12, "Instrument2");
+    Car(std::vector<Wheel> wheels) : wheels(wheels) {}
 
-	void play() {
-		cout << first << endl << second << endl;
-	}
+    void move() {
+        std::cout << "Start move\n";
+    }
+
+    void stop() {
+        std::cout << "Stop move\n";
+    }
+
+private:
+    std::vector<Wheel> wheels;
 };
 
-int main() 
-{
-	Car car;
-	car.play();
+int main() {
+    Wheel frontLeft(17.0, "summer");
+    Wheel frontRight(17.0, "summer");
+    Wheel backLeft(17.0, "summer");
+    Wheel backRight(17.0, "summer");
 
-	return 0;
+    std::vector<Wheel> wheels = { frontLeft, frontRight, backLeft, backRight };
+
+    Car car(wheels);
+
+    car.move();
+    car.stop();
+
+    return 0;
 }
