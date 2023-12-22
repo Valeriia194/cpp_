@@ -5,56 +5,49 @@
 
 using namespace std;
 
-class Basic {
-	public:
-		virtual void square() = 0;
-	};
+//int findMin(int* arr, int size) {
+//	int min = INT32_MAX;
+//	for (int i = 0; i < size; i++) {
+//		if (min > arr[i]) {
+//			min = arr[i];
+//		}
+//	}
+//}
 
-class Rect : public Basic {
-public:
-	void square(){
-	cout << "Square of Rect" << endl;
+void selectionSort(int* arr, int size) {
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; i < size - 1; i++) {
+			
+		int min = INT32_MAX;
+				if (min > arr[j]) {
+					min = arr[j];
+				}
+		}
 	}
-};
+}
 
-class Circuit : public Basic {
-public:
-	void square() {
-		cout << "Square of Circuit" << endl;
+void printArr(int* arr, int size) {
+	cout << "====================" << endl;
+	for (int i = 0; i < size; i++) {
+		cout << "====================" << endl;
 	}
-};
+}
 
-class Triangle : public Basic {
-public:
-	void square() {
-		cout << "Square of Triangle" << endl;
-	}
-};
+int main() {
 
-class Trapeze : public Basic {
-public:
-	void square() {
-		cout << "Square of Trapeze" << endl;
-	}
-};
+	int* arr = new int[8];
+	arr[0] = 5;
+	arr[1] = 8;
+	arr[0] = 7;
+	arr[1] = 4;
+	arr[0] = 2;
+	arr[1] = 3;
+	arr[0] = 6;
+	arr[1] = 1;
 
-
-int main() 
-{
-	Basic* rect = new Rect();
-	Basic* circ = new Circuit();
-	Basic* tri = new Triangle();
-	Basic* trap = new Trapeze();
-
-	vector <Basic*> base;
-	base.push_back(rect);
-	base.push_back(circ);
-	base.push_back(tri);
-	base.push_back(trap);
-
-	for (auto el : base) {
-		el->square();
-	}
+	printArr(arr, 8);
+	selectionSort(arr, 8);
+	printArr(arr, 8);
 
 
 	return 0;
