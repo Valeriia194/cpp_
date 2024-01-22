@@ -1,22 +1,29 @@
+// Task 1
+
 #include <iostream>
+#include <fstream>
 #include <string>
-#include <cmath>
 
-using namespace std;
+int main() {
+    char userChar;
+    std::cout << "Enter simbol: ";
+    std::cin >> userChar;
 
-int main() 
-{
+    std::ifstream file("filename.txt");
+    if (!file) {
+        std::cerr << "Cant open the file!\n";
+        return 1;
+    }
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
+    int count = 0;
+    std::string word;
+    while (file >> word) {
+        if (word[0] == userChar) {
+            ++count;
+        }
+    }
 
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
+    std::cout << "Quantity of words started from '" << userChar << "': " << count << '\n';
 
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
-
-
-	return 0;
+    return 0;
 }
