@@ -1,2 +1,3 @@
 ﻿  main.cpp
+C:\ViceG\C++\Step\c++\cpp\Project1\Project1\main.cpp(88,31): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
   Project1.vcxproj -> C:\ViceG\C++\Step\c++\cpp\Project1\x64\Debug\Project1.exe
