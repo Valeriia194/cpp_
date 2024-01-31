@@ -1,22 +1,22 @@
-#include <iostream>
-#include <string>
-#include <cmath>
+#define INTEGER
+#include "function.h"
 
-using namespace std;
+#define SIZE 10
 
-int main() 
-{
+int main() {
+#ifdef INTEGER
+    int arrayInt[SIZE];
+    FillArray(arrayInt, SIZE);
+    ShowArray(arrayInt, SIZE);
+#elif defined(DOUBLE)
+    double arrayDouble[SIZE];
+    FillArray(arrayDouble, SIZE);
+    ShowArray(arrayDouble, SIZE);
+#elif defined(CHAR)
+    char arrayChar[SIZE];
+    FillArray(arrayChar, SIZE);
+    ShowArray(arrayChar, SIZE);
+#endif
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
-
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
-
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
-
-
-	return 0;
+    return 0;
 }
