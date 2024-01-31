@@ -1,22 +1,75 @@
 #include <iostream>
-#include <string>
-#include <cmath>
+#include <vector>
 
-using namespace std;
+class DamageHealingStats {
+    std::vector<int> data;
 
-int main() 
-{
+public:
+    void input() {
+        int num;
+        std::cout << "Enter the numbers (positive - damage, negative - heal), 123 for finish: "<<std::endl;
+        while (std::cin >> num && num != 123) {
+            data.push_back(num);
+        }
+    }
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
+    void maxDamage() {
+        int maxIndex = 0;
+        for (int i = 1; i < data.size(); i++) {
+            if (data[i] > data[maxIndex]) {
+                maxIndex = i;
+            }
+        }
+        std::cout << "Most damage number: " << maxIndex + 1 << std::endl;
+    }
 
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
+    void minDamage() {
+        int minIndex = 0;
+        for (int i = 1; i < data.size(); i++) {
+            if (data[i] < data[minIndex]) {
+                minIndex = i;
+            }
+        }
+        std::cout << "Less damage number: " << minIndex + 1 << std::endl;
+    }
 
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
+    void healing() {
+        std::cout << "Healing on turn number: ";
+        for (int i = 0; i < data.size(); i++) {
+            if (data[i] < 0) {
+                std::cout << i + 1 << " ";
+            }
+        }
+        std::cout << std::endl;
+    }
 
+    void total(bool isDamage) {
+        int total = 0;
+        for (int i = 0; i < data.size(); i++) {
+            if ((isDamage && data[i] > 0) || (!isDamage && data[i] < 0)) {
+                total += data[i];
+            }
+        }
+        std::cout << "Total " << (isDamage ? "damage: " : "healing: ") << total << std::endl;
+    }
 
-	return 0;
+    void noEffect() {
+        for (int i = 0; i < data.size(); i++) {
+            if (data[i] == 0) {
+                std::cout << "Nothing happen on turn number: " << i + 1 << std::endl;
+            }
+        }
+    }
+};
+
+int main() {
+    DamageHealingStats stats;
+    stats.input();
+    stats.maxDamage();
+    stats.minDamage();
+    stats.healing();
+    stats.total(true);
+    stats.total(false);
+    stats.noEffect();
+    return 0;
 }
