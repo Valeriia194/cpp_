@@ -1,21 +1,31 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <vector>
 
 using namespace std;
+
+enum PersonClass {
+		MAGE,
+		WARRIOR,
+		ROGUE
+	};
+
+struct Person {
+	int id;
+	PersonClass pClass;
+	float melee;
+	float ranged;
+};
+
+int strangest(vector <Person>& person) {
+
+}
 
 int main() 
 {
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
-
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
-
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
+	
 
 
 	return 0;
