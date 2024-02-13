@@ -4,19 +4,56 @@
 
 using namespace std;
 
+class Weapon {
+
+	public:
+		virtual float GetDamage() = 0;
+		virtual string GetName() = 0;
+
+		virtual ~Weapon() {}
+};
+
+class Character {
+	private:
+		Weapon* weapon;
+
+	public:
+
+		void SetWeapon(Weapon* weapon) {
+			this->weapon = weapon;
+		};
+
+		Weapon* GetWeapon() const {
+			return weapon;
+		};
+};
+
+class Gun : public Weapon {
+	public:
+		float GetDamage() override {
+			return 20.0f;
+		}
+
+		string GetName() override {
+			return "Gun";
+		}
+};
+
+
+
 int main() 
 {
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
+	Character myCharacter;
+	Gun* myGun = new Gun;
 
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
+	myCharacter.SetWeapon(myGun);
+	Weapon* weapon = myCharacter.GetWeapon();
 
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
+	cout << "My weapon name: " << (*weapon).GetName() << endl;
+	cout << "Weapon damage: " << weapon->GetDamage() << endl;
 
+	delete myGun;
 
 	return 0;
 }
