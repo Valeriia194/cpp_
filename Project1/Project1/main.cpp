@@ -1,22 +1,44 @@
 #include <iostream>
+#include <vector>
 #include <string>
-#include <cmath>
 
-using namespace std;
+class Human {
+private:
+    std::string name;
+public:
+    explicit Human(std::string n) : name(n) {}
+    std::string getName() const { return name; }
+};
 
-int main() 
-{
+class Apartment {
+private:
+    std::vector<Human> humans;
+public:
+    void addHuman(Human h) { humans.push_back(h); }
+    size_t getNumberOfHumans() const { return humans.size(); }
+};
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
+class Building {
+private:
+    std::vector<Apartment> apartments;
+public:
+    void addApartment(Apartment a) { apartments.push_back(a); }
+    size_t getNumberOfApartments() const { return apartments.size(); }
+};
 
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
+int main() {
+    Human h1("Human1");
+    Human h2("Human2");
 
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
+    Apartment a1;
+    a1.addHuman(h1);
+    a1.addHuman(h2);
 
+    Building b1;
+    b1.addApartment(a1);
 
-	return 0;
+    std::cout << "Number of apartments in building: " << b1.getNumberOfApartments() << std::endl;
+    std::cout << "Number of humans in apartment: " << a1.getNumberOfHumans() << std::endl;
+
+    return 0;
 }
