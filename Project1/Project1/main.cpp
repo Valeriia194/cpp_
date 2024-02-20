@@ -1,59 +1,54 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <memory>
 
 using namespace std;
 
 class Weapon {
+public:
+	virtual float GetDamage() = 0;
+	virtual string GetName() = 0;
 
-	public:
-		virtual float GetDamage() = 0;
-		virtual string GetName() = 0;
-
-		virtual ~Weapon() {}
+	virtual ~Weapon() {}
 };
 
 class Character {
-	private:
-		Weapon* weapon;
+private:
+	unique_ptr<Weapon> weapon;
 
-	public:
+public:
 
-		void SetWeapon(Weapon* weapon) {
-			this->weapon = weapon;
-		};
+	void SetWeapon(unique_ptr<Weapon> weapon) {
+		this->weapon = move(weapon);
+	};
 
-		Weapon* GetWeapon() const {
-			return weapon;
-		};
+	Weapon* GetWeapon() const {
+		return weapon.get();
+	};
 };
 
 class Gun : public Weapon {
-	public:
-		float GetDamage() override {
-			return 20.0f;
-		}
+public:
+	float GetDamage() override {
+		return 20.0f;
+	}
 
-		string GetName() override {
-			return "Gun";
-		}
+	string GetName() override {
+		return "Gun";
+	}
 };
 
-
-
-int main() 
+int main()
 {
-
 	Character myCharacter;
-	Gun* myGun = new Gun;
+	unique_ptr<Gun> myGun = make_unique<Gun>();
 
-	myCharacter.SetWeapon(myGun);
+	myCharacter.SetWeapon(move(myGun));
 	Weapon* weapon = myCharacter.GetWeapon();
 
-	cout << "My weapon name: " << (*weapon).GetName() << endl;
+	cout << "My weapon name: " << weapon->GetName() << endl;
 	cout << "Weapon damage: " << weapon->GetDamage() << endl;
-
-	delete myGun;
 
 	return 0;
 }
