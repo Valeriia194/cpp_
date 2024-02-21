@@ -1,21 +1,66 @@
 #include <iostream>
-#include <string>
-#include <cmath>
+#include <vector>
 
 using namespace std;
 
+class Observer {
+public:
+	virtual void onEvent(int event) = 0;
+};
+
+class Subject {
+
+	vector <Observer*> observers;
+
+public:
+
+	void addObserver(Observer* observer) {
+		observers.push_back(observer);
+	}
+
+	void notify(int event) {
+		for (Observer* observer : observers) {
+			observer->onEvent(event);
+		}
+	}
+	};
+
+class Achievments : public Observer {
+public:
+	void onEvent(int event) override {
+		if (event == EVENT_START_FALLING) {
+			cout << "Event unlocked! Falling " << endl;
+		}
+	}
+
+};
+
+class Physics {
+public:
+	Subject subject;
+
+	void updateEntity(Entity& entity) {
+		bool wasOnSurface = entity.isOnSurface();
+		entity.accelerate(GRAVITY);
+		entity.update();
+		if (wasOnSurface && !entity.isOnSurface()) {
+			subject.notify(EVENT_START_FALL);
+		}
+	}
+	}
+};
+
+
+
 int main() 
 {
+	Achievments achievements;
+	Physics physics;
 
-	cout << "Enter the time in seconds from start of the day: ";
-	int seconds;
-	cin >> seconds;
+	physics.subject.addObserver(&achievements);
 
-	int hours = (seconds/60)/60;
-	int minutes = (seconds - hours*60*60)/60;
-	int secondsNow = seconds - (seconds - hours * 60 * 60) - minutes*60;
-
-	cout << endl << "Time now is: " << hours << " hours " << minutes << " minutes " << seconds << " seconds ";
+	Entity entity;
+	physics.updateEntity(entity);
 
 
 	return 0;
