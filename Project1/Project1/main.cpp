@@ -42,7 +42,7 @@ int main()
 {
 	srand(time(NULL));
 
-	mistakes = 3;
+	int mistakes = 3;
 	displayHang(mistakes);
 
 	return 0;
